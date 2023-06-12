@@ -42,3 +42,8 @@ rm -rf /var/lib/containerd
 rm -rf /var/lib/nerdctl
 rm -rf /opt/containerd
 
+rm -f /usr/local/bin/containerd-shim-runc-v1
+rm -f /usr/local/bin/containerd-stress
+rm -f /usr/local/bin/critest
+rm -f /usr/local/bin/ctd-decoder
+rm -f /usr/local/sbin/runc
