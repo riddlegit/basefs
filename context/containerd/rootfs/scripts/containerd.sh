@@ -92,7 +92,7 @@ if ! containerd --version; then
 
   # install /etc/containerd/config.toml
   mkdir -p /etc/containerd
-  cp -f "${scripts_path}"/../etc/containerd-config.toml /etc/containerd/config.toml
+  cp -f "${scripts_path}"/../etc/dump-config.toml /etc/containerd/config.toml
 fi
 
 disable_selinux
