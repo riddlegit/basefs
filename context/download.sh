@@ -86,8 +86,8 @@ echo "download registry tarball ${registry_tarball_amd64_url}"
 mkdir -p {arm,amd}64/{cri,bin,images}
 
 ##https://www.netfilter.org/pub/conntrack-tools/conntrack-tools-1.4.4.tar.bz2
-wget "${install_url}/linux-amd64/conntrack-${conntrack_version:-}/bin/conntrack" && mv conntrack "amd64/bin"
-wget "${install_url}/linux-arm64/conntrack-${conntrack_version}/bin/conntrack" && mv conntrack "arm64/bin"
+wget -c -t 0 -T 100 "${install_url}/linux-amd64/conntrack-${conntrack_version:-}/bin/conntrack" && mv conntrack "amd64/bin"
+wget -c -t 0 -T 100 "${install_url}/linux-arm64/conntrack-${conntrack_version}/bin/conntrack" && mv conntrack "arm64/bin"
 
 echo "download gperf version ${gperf_version}"
 mkdir -p "rootfs/lib"
@@ -97,24 +97,24 @@ echo "download libseccomp version ${libseccomp_version}"
 curl -sLO "${libseccomp_tarball_url}" && mv "${libseccomp_tarball}" "rootfs/lib"
 
 echo "download nerdctl version ${nerdctl_version}"
-wget -q "${nerdctl_tarball_amd64_url}" && tar zxvf "${nerdctl_tarball_amd64}" -C "amd64/bin"
-wget -q "${nerdctl_tarball_arm64_url}" && tar zxvf "${nerdctl_tarball_arm64}" -C "arm64/bin"
+wget -c -t 0 -T 100 "${nerdctl_tarball_amd64_url}" && tar zxvf "${nerdctl_tarball_amd64}" -C "amd64/bin"
+wget -c -t 0 -T 100 "${nerdctl_tarball_arm64_url}" && tar zxvf "${nerdctl_tarball_arm64}" -C "arm64/bin"
 
 echo "download crictl version ${crictl_version}"
-wget -q "${crictl_tarball_amd64_url}" && tar zxvf "${crictl_tarball_amd64}" -C "amd64/bin"
-wget -q "${crictl_tarball_arm64_url}" && tar zxvf "${crictl_tarball_arm64}" -C "arm64/bin"
+wget -c -t 0 -T 100 "${crictl_tarball_amd64_url}" && tar zxvf "${crictl_tarball_amd64}" -C "amd64/bin"
+wget -c -t 0 -T 100 "${crictl_tarball_arm64_url}" && tar zxvf "${crictl_tarball_arm64}" -C "arm64/bin"
 
 echo "download seautil version ${seautil_version}"
-wget -q "${seautil_tarball_amd64_url}" && tar zxvf "${seautil_tarball_amd64}" -C "amd64/bin"
-wget -q "${seautil_tarball_arm64_url}" && tar zxvf "${seautil_tarball_arm64}" -C "arm64/bin"
+wget -c -t 0 -T 100 "${seautil_tarball_amd64_url}" && tar zxvf "${seautil_tarball_amd64}" -C "amd64/bin"
+wget -c -t 0 -T 100 "${seautil_tarball_arm64_url}" && tar zxvf "${seautil_tarball_arm64}" -C "arm64/bin"
 
 echo "download cri with ${cri}"
-wget -q "${cri_tarball_amd64_url}" && mv "${cri_tarball_amd64}" "amd64/cri/docker.tar.gz"
-wget -q "${cri_tarball_arm64_url}" && mv "${cri_tarball_arm64}" "arm64/cri/docker.tar.gz"
+wget -c -t 0 -T 100 "${cri_tarball_amd64_url}" && mv "${cri_tarball_amd64}" "amd64/cri/docker.tar.gz"
+wget -c -t 0 -T 100 "${cri_tarball_arm64_url}" && mv "${cri_tarball_arm64}" "arm64/cri/docker.tar.gz"
 
 echo "download distribution image ${registry_tarball_amd64}"
-wget -q "${registry_tarball_amd64_url}" && mv "${registry_tarball_amd64}" "amd64/images"
-wget -q "${registry_tarball_arm64_url}" && mv "${registry_tarball_arm64}" "arm64/images"
+wget -c -t 0 -T 100 "${registry_tarball_amd64_url}" && mv "${registry_tarball_amd64}" "amd64/images"
+wget -c -t 0 -T 100 "${registry_tarball_arm64_url}" && mv "${registry_tarball_arm64}" "arm64/images"
 
 echo "download kubeadm kubectl kubelet version ${kube_install_version:-}"
 
