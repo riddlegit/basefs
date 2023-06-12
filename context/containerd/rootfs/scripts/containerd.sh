@@ -47,7 +47,7 @@ if ! containerd --version; then
   echo "current system is ${lsb_dist}"
 
   # containerd bin、crictl bin、ctr bin、nerdctr bin、cni plugin etc
-  tar -zxvf "${scripts_path}"/../cri/docker.tgz -C /
+  tar -zxvf "${scripts_path}"/../cri/containerd.tgz -C /
   chmod a+x /usr/local/bin
   chmod a+x /usr/local/sbin
 
