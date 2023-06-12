@@ -18,6 +18,24 @@ scripts_path=$(cd `dirname "$0"`; pwd)
 
 set -e;set -x
 
+utils_get_distribution() {
+  lsb_dist=""
+  # Every system that we officially support has /etc/os-release
+  if [ -r /etc/os-release ]; then
+    lsb_dist="$(. /etc/os-release && echo "$ID")"
+  fi
+  # Returning an empty string here should be alright since the
+  # case statements don't act unless you provide an actual value
+  echo "$lsb_dist"
+}
+
+disable_selinux() {
+  if [ -s /etc/selinux/config ] && grep 'SELINUX=enforcing' /etc/selinux/config; then
+    sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+    setenforce 0
+  fi
+}
+
 # get params
 storage=${ContainerDataRoot:-/var/lib/containerd} # containerd default uses /var/lib/containerd
 mkdir -p "$storage"
@@ -29,7 +47,7 @@ if ! containerd --version; then
   echo "current system is ${lsb_dist}"
 
   # containerd bin、crictl bin、ctr bin、nerdctr bin、cni plugin etc
-  tar -zxvf "${scripts_path}"/../tgz/containerd.tgz -C /
+  tar -zxvf "${scripts_path}"/../cri/docker.tgz -C /
   chmod a+x /usr/local/bin
   chmod a+x /usr/local/sbin
 
