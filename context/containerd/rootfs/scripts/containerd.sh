@@ -53,7 +53,7 @@ if ! containerd --version; then
 
   case "${lsb_dist}" in
   ubuntu | deepin | debian | raspbian)
-    cp -f "${scripts_path}"/../etc/containerd.service /etc/systemd/system/containerd.service
+    
     if [ ! -f /usr/sbin/iptables ];then
       if [ -f /sbin/iptables ];then
         ln -s /sbin/iptables /usr/sbin/iptables
@@ -69,7 +69,7 @@ if ! containerd --version; then
     if ! rpm -qa | grep ${rpm};then
       rpm -ivh --force --nodeps "${RPM_DIR}"/${rpm}*.rpm
     fi
-    cp -f "${scripts_path}"/../etc/containerd.service /etc/systemd/system/containerd.service
+    
     ;;
   alios)
     docker0=$(ip addr show docker0 | head -1|tr " " "\n"|grep "<"|grep -iwo "UP"|wc -l)
@@ -82,11 +82,11 @@ if ! containerd --version; then
     if ! rpm -qa | grep ${rpm};then
       rpm -ivh --force --nodeps "${RPM_DIR}"/${rpm}*.rpm
     fi
-    cp -f "${scripts_path}"/../etc/containerd.service /etc/systemd/system/containerd.service
+    
     ;;
   *)
     utils_error "unknown system to use /etc/systemd/system/containerd.service"
-    cp -f "${scripts_path}"/../etc/containerd.service /etc/systemd/system/containerd.service
+    
     ;;
   esac
 
